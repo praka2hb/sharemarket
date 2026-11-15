@@ -1,0 +1,19 @@
+# Dependencies and builds
+node_modules/
+.next/
+*.tsbuildinfo
+contracts/out/
+contracts/cache/
+
+# Secrets and local config
+.env
+.env.*
+!.env.example
+.vercel
+.claude/settings.local.json
+
+# Foundry local broadcast data (keeps run-latest records, drops per-machine sensitive caches)
+contracts/broadcast/**/dry-run/
+
+# OS
+.DS_Store

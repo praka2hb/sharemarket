@@ -1,0 +1,10 @@
+{
+  "bond": 1000000000,
+  "cloud": "0xFD8Eb19E5aee47F448BC91e0b4AfD42F3D44b6ab",
+  "fallbackPpm": 241782,
+  "id": 1,
+  "label": "26Q4",
+  "ruleHash": "0x280324b518f9279afe9e31ba618ff23338e575b4b8be46a7edf560221c9e4edf",
+  "services": "0x176156695cf44CdEfb6DBd13A1598d61C7dECbA8",
+  "tradingCloseAt": 1795282345
+}

@@ -1,0 +1,26 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+solc_version = "0.8.26"
+evm_version = "cancun"
+# Base B20 precompiles (GOOGLc, PolicyRegistry) only run under a Base hardfork.
+# Needs Foundry >= 1.8.4 built with the `base` feature (foundryup binaries or base-anvil;
+# the Homebrew build lacks it). See https://docs.base.org/sdks/base-anvil
+# Uncomment once that toolchain is installed:
+# hardfork = "base:Cobalt"
+optimizer = true
+optimizer_runs = 200
+# Scripts read and write deployment addresses here.
+fs_permissions = [
+  { access = "read-write", path = "../deployments" },
+]
+
+# Scripts encode large Uniswap v4 calls; compile only them with the IR pipeline to avoid stack limits.
+additional_compiler_profiles = [{ name = "scripts", via_ir = true }]
+compilation_restrictions = [{ paths = "script/**", via_ir = true }]
+
+[rpc_endpoints]
+base = "${BASE_RPC_URL}"
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
