@@ -97,8 +97,8 @@ export const MARKETS: Market[] = [
     "GOOGL",
     { company: "Alphabet", ticker: "GOOGL", token: "GOOGLc", logo: "/tokens/google.png", tokenColor: "#4285F4", reportedLabel: "Q3 2026" },
     [
-      { sym: "SEARCH", name: "Google Search", includes: "Search & other ads revenue", color: "#4285F4", reported: 60.18 },
-      { sym: "YOUTUBE", name: "YouTube ads", includes: "Advertising on YouTube", color: "#FF3B30", reported: 10.65 },
+      { sym: "SEARCH", name: "Google Search", includes: "Search & other ads revenue", color: "#4285F4", logo: "/tokens/search.svg", reported: 60.18 },
+      { sym: "YOUTUBE", name: "YouTube ads", includes: "Advertising on YouTube", color: "#FF3B30", logo: "/tokens/youtube.svg", reported: 10.65 },
       { sym: "CLOUD", name: "Google Cloud", includes: "Cloud platform, Workspace, AI infrastructure", color: "#34A853", logo: "/tokens/cloud.png", reported: 29.17 },
     ],
   ),
@@ -106,9 +106,9 @@ export const MARKETS: Market[] = [
     "NVDA",
     { company: "NVIDIA", ticker: "NVDA", token: "NVDAc", tokenColor: "#76B900", reportedLabel: "Q2 FY2027" },
     [
-      { sym: "HYPERSCALE", name: "Hyperscale", includes: "GPUs and systems sold to the biggest cloud providers", color: "#76B900", reported: 50.62 },
-      { sym: "AICLOUD", name: "AI clouds & enterprise", includes: "AI clouds, industrial and enterprise customers", color: "#0EA5E9", reported: 41.9 },
-      { sym: "EDGE", name: "Edge", includes: "Gaming, PCs, robotics and cars", color: "#A855F7", reported: 7.48 },
+      { sym: "HYPERSCALE", name: "Hyperscale", includes: "GPUs and systems sold to the biggest cloud providers", color: "#76B900", logo: "/tokens/hyperscale.svg", reported: 50.62 },
+      { sym: "AICLOUD", name: "AI clouds & enterprise", includes: "AI clouds, industrial and enterprise customers", color: "#0EA5E9", logo: "/tokens/aicloud.svg", reported: 41.9 },
+      { sym: "EDGE", name: "Edge", includes: "Gaming, PCs, robotics and cars", color: "#A855F7", logo: "/tokens/edge.svg", reported: 7.48 },
     ],
   ),
 ];
