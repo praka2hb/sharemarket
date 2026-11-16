@@ -60,8 +60,8 @@ To add a market: deploy it, add it to the deployments file, run `npm run sync`, 
 ## Pages
 
 - `/`: markets list with live piece prices.
-- `/markets/googl`, `/markets/nvda`: piece cards and split bar, trade panel (buy/sell any piece), faucet, chart of the selected piece, position, split & merge.
-- `/positions`: holdings per market valued in its stock token, full sets you can merge, on-chain activity with BaseScan links.
+- `/markets/googl`, `/markets/nvda`: piece cards and split bar, trade panel (buy/sell any piece), faucet, chart of the selected piece, position. Split and merge are not shown to users; they stay in the contracts for arbitrage and liquidity.
+- `/positions`: holdings per market valued in its stock token, trade history with BaseScan links.
 - `/how-it-works`: four steps and a worked example.
 - `/proof`: per market, vault stock balance = every piece's supply, live, plus contract addresses.
 - `/risks`: testnet mock, unaudited, price not tied to reports, thin liquidity, issuer pause/blocklist, other pools.

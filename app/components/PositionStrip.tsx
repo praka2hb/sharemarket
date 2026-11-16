@@ -19,7 +19,7 @@ export function usePortfolio(market: Market) {
     return bal !== undefined && price !== undefined ? valueAt(bal, price) : undefined;
   });
   const total = values.every((v) => v !== undefined) && acct.stock !== undefined ? values.reduce<bigint>((a, v) => a + v!, stock) : undefined;
-  return { acct, m, values, total, sets: acct.sets ?? 0n };
+  return { acct, m, values, total };
 }
 
 export function PositionStrip() {
@@ -61,11 +61,6 @@ export function PositionStrip() {
           {formatAmount(p.total)} {market.token}
         </span>
       </div>
-      {p.sets > 0n && (
-        <p className="mt-1.5 text-[12px] text-ink-3">
-          Includes <span className="num text-ink">{formatAmount(p.sets)}</span> full sets = {formatAmount(p.sets)} {market.token}, mergeable now.
-        </p>
-      )}
     </section>
   );
 }

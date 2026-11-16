@@ -3,9 +3,9 @@ import { MarketsList } from "@/components/MarketsList";
 import { MARKETS, marketHref } from "@/lib/markets";
 
 const STEPS = [
-  { n: "1", t: "Deposit a stock token", d: "For example 1 GOOGLc (Alphabet) or 1 NVDAc (NVIDIA), tokenized shares on Base." },
-  { n: "2", t: "Get one piece per business", d: "1 GOOGLc becomes 1 $SEARCH + 1 $YOUTUBE + 1 $CLOUD. Together they're always worth exactly 1 GOOGLc." },
-  { n: "3", t: "Trade the piece you believe in", d: "Buy Cloud, sell Search, or back NVIDIA's edge business. Merge a full set back into the stock any time." },
+  { n: "1", t: "Pick a company", d: "Alphabet or NVIDIA today. Each one is broken into the businesses it reports." },
+  { n: "2", t: "Pick the business you believe in", d: "Google Search, YouTube ads or Google Cloud. NVIDIA's hyperscale, AI cloud or edge sales." },
+  { n: "3", t: "Buy it, sell it any time", d: "Each business trades like its own token. Its price is what the market thinks that part of the company is worth." },
 ];
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
       <section className="pt-14 pb-12 sm:pt-20">
         <h1 className="display max-w-[16ch] text-[40px] sm:text-[60px]">Trade the parts of a company.</h1>
         <p className="mt-5 max-w-[58ch] text-[17px] leading-relaxed text-ink-2">
-          Big companies are several businesses in one. ShareMarket splits a stock into the business lines it reports, so you can back just the part you believe in: Google
+          Big companies are several businesses in one. ShareMarket lets you buy and sell each business inside a stock on its own, so you can back just the part you believe in: Google
           Cloud instead of all of Alphabet, or NVIDIA&apos;s hyperscale sales instead of its edge chips.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">

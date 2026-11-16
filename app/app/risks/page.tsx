@@ -35,15 +35,15 @@ const RISKS: { title: string; body: React.ReactNode; level: "info" | "med" | "hi
     level: "med",
     body: (
       <>
-        The issuer of each stock token can pause transfers or block addresses. If that happens, trading and merging in that market stop until it&apos;s lifted. If your
-        own address is blocked, merge can send the stock token to a different address. The mocks copy this behaviour; their live status is shown above.
+        The issuer of each stock token can pause transfers or block addresses. If that happens, trading and merging in that market stop until it&apos;s lifted. The mocks
+        copy this behaviour; their live status is shown above.
       </>
     ),
   },
   {
-    title: "Merging needs every piece",
+    title: "You exit by selling",
     level: "info",
-    body: "To turn pieces back into the stock token through merge, you need one of every piece. If you only hold one piece, you exit by selling it in its pool.",
+    body: "To get out of a business token, you sell it at the current price. If few people are trading it, you may get less than you expect.",
   },
   {
     title: "Other pools can exist",

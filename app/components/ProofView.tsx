@@ -23,8 +23,8 @@ export function ProofView() {
           <ul className="mt-4 space-y-3 text-[14px] leading-relaxed text-ink-2">
             {[
               "Each vault has no owner, no admin, no pause and no withdraw function.",
-              "Stock tokens only leave through merge, which burns one of every piece first.",
-              "Split checks the stock tokens that actually arrived, so fee-on-transfer tricks are refused.",
+              "Shares only leave the vault when one of every business token is handed back and burned.",
+              "New business tokens are only created when a real share is deposited.",
               "Only the vault can mint or burn its piece tokens.",
             ].map((t) => (
               <li key={t} className="flex gap-3">

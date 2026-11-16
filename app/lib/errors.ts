@@ -81,7 +81,7 @@ function fromName(name: string, args: readonly unknown[]): HumanError {
       return {
         kind: "blocked",
         blocked: args[0] as string,
-        message: `The token issuer has blocked ${short(args[0] as string)} from holding this stock token. You can still merge and send the stock token to a different address.`,
+        message: `The token issuer has blocked ${short(args[0] as string)} from holding this stock token, so this trade can't go through.`,
       };
     case "BadPiece":
       return { kind: "unknown", message: "That piece doesn't exist in this market." };

@@ -94,7 +94,7 @@ export function useTrade({
       return { id: "faucet", label: cooling ? "Faucet cooling down" : "Get free test stock tokens", disabled: cooling };
     }
     if (!buying && inBalance === 0n)
-      return { id: "blocked", label: `You have no ${inLabel} yet`, disabled: true, hint: `Buy some ${inLabel} first, or split ${market.token}.` };
+      return { id: "blocked", label: `You have no ${inLabel} yet`, disabled: true, hint: `Switch to Buy to get some ${inLabel}.` };
 
     if (!amount || amount === 0n) return { id: "enter", label: "Enter an amount", disabled: true };
     if (inBalance !== undefined && amount > inBalance) return { id: "blocked", label: `Not enough ${inLabel}`, disabled: true };

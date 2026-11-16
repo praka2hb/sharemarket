@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { parseAbiItem, type Address } from "viem";
 import { ADDRESSES, DEPLOY_BLOCK } from "@/lib/addresses";
-import { BLOCK_TIME_S, LOGS_CHUNK, logsClient } from "@/lib/chain";
+import { LOGS_CHUNK, logsClient } from "@/lib/chain";
 import { MARKETS, type Market, type Piece } from "@/lib/markets";
 import { piecePriceWad, pricePct } from "@/lib/math";
 
@@ -14,13 +14,27 @@ const swapEvent = parseAbiItem(
   "event Swap(bytes32 indexed id, address indexed sender, int128 amount0, int128 amount1, uint160 sqrtPriceX96, uint128 liquidity, int24 tick, uint24 fee)",
 );
 
-async function head() {
-  const block = await logsClient.getBlock({ blockTag: "latest" });
-  return { number: block.number, timestamp: Number(block.timestamp) };
+type Head = { number: bigint; timestamp: number; start: number };
+
+let deployTs: Promise<number> | null = null;
+
+/** Latest block, plus the deploy block's timestamp (fetched once), for dating events. */
+async function head(): Promise<Head> {
+  deployTs ??= logsClient.getBlock({ blockNumber: DEPLOY_BLOCK }).then((b) => Number(b.timestamp));
+  const [block, start] = await Promise.all([logsClient.getBlock({ blockTag: "latest" }), deployTs]);
+  return { number: block.number, timestamp: Number(block.timestamp), start };
 }
 
-/** Block → unix seconds. Base makes a block every 2s, so we can date events without fetching each block. */
-const dateOf = (h: { number: bigint; timestamp: number }, bn: bigint) => h.timestamp - Number(h.number - bn) * BLOCK_TIME_S;
+/**
+ * Block → unix seconds without fetching each block: interpolate between the deploy block and the latest block.
+ * Block times change (Base Sepolia went from 2s to sub-second), so the rate is measured, not assumed.
+ */
+const dateOf = (h: Head, bn: bigint) => {
+  const span = Number(h.number - DEPLOY_BLOCK);
+  if (span <= 0) return h.timestamp;
+  const perBlock = (h.timestamp - h.start) / span;
+  return Math.round(h.start + Number(bn - DEPLOY_BLOCK) * perBlock);
+};
 
 function ranges(from: bigint, to: bigint) {
   const out: [bigint, bigint][] = [];
@@ -62,13 +76,9 @@ const routerEvents = [
   parseAbiItem("event Bought(address indexed user, uint256 indexed piece, uint256 stockIn, uint256 pieceOut)"),
   parseAbiItem("event Sold(address indexed user, uint256 indexed piece, uint256 pieceIn, uint256 stockOut)"),
 ] as const;
-const vaultEvents = [
-  parseAbiItem("event Split(address indexed user, address indexed to, uint256 amount)"),
-  parseAbiItem("event Merged(address indexed user, address indexed to, uint256 amount)"),
-] as const;
 
 export type Activity = {
-  kind: "Bought" | "Sold" | "Split" | "Merged";
+  kind: "Bought" | "Sold";
   market: Market;
   hash: `0x${string}`;
   t: number;
@@ -76,7 +86,7 @@ export type Activity = {
   args: Record<string, bigint | string>;
 };
 
-/** The user's own router and vault events across every market, newest first. */
+/** The user's own trades across every market, newest first. */
 export function useActivity(user?: Address) {
   return useQuery({
     queryKey: ["activity", user],
@@ -89,9 +99,6 @@ export function useActivity(user?: Address) {
         chunks.flatMap(([fromBlock, toBlock]) => [
           ...routerEvents.map((event) =>
             logsClient.getLogs({ address: market.router, event, args: { user }, fromBlock, toBlock }).then((ls) => ls.map((l) => ({ l, market }))),
-          ),
-          ...vaultEvents.map((event) =>
-            logsClient.getLogs({ address: market.vault, event, args: { user }, fromBlock, toBlock }).then((ls) => ls.map((l) => ({ l, market }))),
           ),
         ]),
       );

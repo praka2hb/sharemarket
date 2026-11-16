@@ -155,11 +155,6 @@ export function TradePanel() {
       {t.tx.error && t.tx.error.kind !== "rejected" && (
         <p role="alert" className="mt-2 rounded-lg bg-down/8 p-3 text-[13px] text-down">
           {t.tx.error.message}
-          {t.tx.error.kind === "blocked" && (
-            <a href="#split-merge" className="ml-1 font-medium underline">
-              Merge to another address
-            </a>
-          )}
         </p>
       )}
       {t.quoteError && !t.quote && (

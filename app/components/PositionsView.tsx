@@ -106,12 +106,9 @@ function MarketHoldings({ market }: { market: Market }) {
         ))}
       </div>
       <div className="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-3">
-        <p className="text-[13px] text-ink-2">
-          <span className="num font-medium text-ink">{formatAmount(p.sets)}</span> full sets ={" "}
-          <span className="num">{formatAmount(p.sets)}</span> {market.token}, {p.sets > 0n ? "mergeable now." : "needs one of every piece."}
-        </p>
-        <Link href={`${marketHref(market.id)}#${p.sets > 0n ? "split-merge" : "trade"}`} className="inline-flex h-9 items-center rounded-full bg-ink px-4 text-[13px] font-semibold text-bg">
-          {p.sets > 0n ? "Merge →" : "Trade →"}
+        <p className="text-[13px] text-ink-2">Valued at live pool prices.</p>
+        <Link href={`${marketHref(market.id)}#trade`} className="inline-flex h-9 items-center rounded-full bg-ink px-4 text-[13px] font-semibold text-bg">
+          Trade →
         </Link>
       </div>
     </Card>
@@ -152,10 +149,6 @@ function describe(a: Activity): { title: string; detail: string; color: string }
       return { title: `Bought ${sym}`, detail: `${v("stockIn")} ${m.token} → ${v("pieceOut")} ${sym}`, color: piece?.color ?? "var(--ink)" };
     case "Sold":
       return { title: `Sold ${sym}`, detail: `${v("pieceIn")} ${sym} → ${v("stockOut")} ${m.token}`, color: piece?.color ?? "var(--ink)" };
-    case "Split":
-      return { title: `Split ${m.token}`, detail: `${v("amount")} ${m.token} → ${v("amount")} of each piece`, color: "var(--ink)" };
-    case "Merged":
-      return { title: `Merged into ${m.token}`, detail: `${v("amount")} sets → ${v("amount")} ${m.token}`, color: "var(--ink)" };
   }
 }
 

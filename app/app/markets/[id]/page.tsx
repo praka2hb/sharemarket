@@ -4,7 +4,6 @@ import { FaucetCard } from "@/components/FaucetCard";
 import { MarketHeader } from "@/components/MarketHeader";
 import { PositionStrip } from "@/components/PositionStrip";
 import { PriceChart } from "@/components/PriceChart";
-import { SplitMergePanel } from "@/components/SplitMergePanel";
 import { TradePanel } from "@/components/TradePanel";
 import { MarketProvider } from "@/components/TradeTabContext";
 import { MARKETS, getMarket } from "@/lib/markets";
@@ -39,7 +38,6 @@ export default async function MarketPage({ params }: { params: Promise<{ id: str
         <div className="min-w-0 space-y-8 lg:col-start-1 lg:row-start-2">
           <PriceChart />
           <PositionStrip />
-          <SplitMergePanel />
         </div>
       </div>
     </MarketProvider>

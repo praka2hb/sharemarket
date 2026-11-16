@@ -5,18 +5,18 @@ import { PageHeader } from "@/components/PageHeader";
 export const metadata: Metadata = { title: "How it works" };
 
 const STEPS = [
-  ["Deposit a stock token", "Start with a tokenized share, like 1 GOOGLc (Alphabet) or 1 NVDAc (NVIDIA) on Base."],
-  ["Split it into pieces", "The vault locks your share and gives you one token per business line the company reports: 1 GOOGLc → 1 $SEARCH + 1 $YOUTUBE + 1 $CLOUD. It always holds one share for every full set."],
-  ["Trade the piece you believe in", "Each piece trades against the stock token in its own Uniswap v4 pool. Its price is the market's view of how much of the company that business is worth."],
-  ["Merge back any time", "Hand back one of every piece and get exactly one share. No settlement, no expiry, no admin."],
+  ["Pick a company", "Each company is broken into the businesses it reports: Alphabet into $SEARCH, $YOUTUBE and $CLOUD; NVIDIA into $HYPERSCALE, $AICLOUD and $EDGE."],
+  ["Pick a business", "Each business trades as its own token. Its price is the market's view of how much of the company that business is worth."],
+  ["Buy and sell any time", "Pay with the company's stock token, get the business token. Sell it back whenever you like. No expiry."],
+  ["Backed by real shares", "Every business token comes from a real tokenized share locked in an on-chain vault. Check it live on the Proof page."],
 ];
 
 export default function HowItWorks() {
   return (
     <>
-      <PageHeader eyebrow="How it works" title="One stock, split into its businesses.">
+      <PageHeader eyebrow="How it works" title="Trade the businesses inside a stock.">
         Alphabet is Search, YouTube ads and Google Cloud. NVIDIA sells to hyperscalers, to AI clouds and enterprises, and at the edge. ShareMarket lets you hold and
-        trade each part on its own. Holding every part is the same as holding the stock.
+        trade each part on its own.
       </PageHeader>
 
       <div className="mx-auto max-w-[1080px] space-y-12 px-4 sm:px-6">
@@ -49,7 +49,7 @@ export default function HowItWorks() {
           <div>
             <h2 className="text-[17px] font-semibold tracking-tight">What&apos;s guaranteed</h2>
             <p className="mt-2 text-[15px] leading-relaxed text-ink-2">
-              One of every piece always merges into exactly one share. So within a company, piece prices add up to about one share: if they don't, anyone can split or merge and trade the gap away.
+              Every business token is backed by a real share held in a vault with no owner or admin. Together, a company's business tokens are worth about one share.
             </p>
           </div>
           <div>

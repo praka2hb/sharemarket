@@ -32,7 +32,7 @@ export function MarketHeader() {
             {market.company}
           </h1>
           <p className="text-[13px] text-ink-2">
-            {market.ticker} · 1 {market.token} = {market.pieces.map((p) => `1 $${p.sym}`).join(" + ")}
+            {market.ticker} · {market.pieces.map((p) => `$${p.sym}`).join(" · ")}
           </p>
         </div>
       </div>
@@ -68,9 +68,8 @@ export function MarketHeader() {
       <div className="mt-5">
         <SplitBar market={market} pcts={m.pieces.map((p) => p.pct)} onPick={pick} />
         <p className="mt-2 text-[12px] text-ink-3">
-          Pieces add up to <span className="num text-ink-2">{sum !== undefined ? `${sum.toFixed(2)}%` : "—"}</span> of one {market.token}. If the sum drifts
-          from 100%, anyone can split or merge and trade the gap away. Reported mix is {market.company}&apos;s {market.reportedLabel} revenue, shown for context;
-          it doesn&apos;t move prices.
+          Together these add up to <span className="num text-ink-2">{sum !== undefined ? `${sum.toFixed(2)}%` : "—"}</span> of one {market.token}. The faint bar is{" "}
+          {market.company}&apos;s {market.reportedLabel} revenue mix, shown for context; it doesn&apos;t move prices.
         </p>
       </div>
     </section>
